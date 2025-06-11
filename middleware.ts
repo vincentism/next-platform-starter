@@ -4,11 +4,21 @@ import { MiddlewareRequest, type NextRequest } from '@netlify/next';
 
  
 export function middleware(req: NextRequest) {
+
+  console.log('req', req);
+
+  const { pathname } = req.nextUrl;
+  if (pathname.startsWith("/api/hello")) {
+    // Add a header to the rewritten request
+
     const request = new MiddlewareRequest(req);
 
-  // Clone the request headers and set a new header `x-hello-from-middleware1`
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-hello-from-middleware1', 'hello1')
+    // Clone the request headers and set a new header `x-hello-from-middleware1`
+    request.headers.set('x-hello-from-middleware1', 'hello1')
+  }
+
+
+
 
   console.log('in middleware');
  
@@ -16,13 +26,15 @@ export function middleware(req: NextRequest) {
   const response = NextResponse.next({
     request: {
       // New request headers
-      headers: requestHeaders,
+      headers: request.headers,
     },
   })
  
   // Set a new response header `x-hello-from-middleware2`
   response.headers.set('x-hello-from-middleware2', 'hello2')
   return response
+
+
 }
 
 
