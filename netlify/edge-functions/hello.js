@@ -29,6 +29,6 @@ export default async (req, context) => {
 
 };
 
-export const config = {
-  path: "/travel-guide-at-edge/:city/:country"
-};
+// export const config = {
+//   path: "/travel-guide-at-edge/:city/:country"
+// };

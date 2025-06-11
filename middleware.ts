@@ -15,24 +15,27 @@ export function middleware(req: NextRequest) {
 
     // Clone the request headers and set a new header `x-hello-from-middleware1`
     request.headers.set('x-hello-from-middleware1', 'hello1')
+
+    return request.next();
+
   }
 
 
 
 
-  console.log('in middleware');
+  // console.log('in middleware');
  
-  // You can also set request headers in NextResponse.next
-  const response = NextResponse.next({
-    request: {
-      // New request headers
-      headers: request.headers,
-    },
-  })
+  // // You can also set request headers in NextResponse.next
+  // const response = NextResponse.next({
+  //   request: {
+  //     // New request headers
+  //     headers: request.headers,
+  //   },
+  // })
  
-  // Set a new response header `x-hello-from-middleware2`
-  response.headers.set('x-hello-from-middleware2', 'hello2')
-  return response
+  // // Set a new response header `x-hello-from-middleware2`
+  // response.headers.set('x-hello-from-middleware2', 'hello2')
+  // return response
 
 
 }
