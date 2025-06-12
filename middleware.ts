@@ -5,10 +5,12 @@ import { MiddlewareRequest, type NextRequest } from '@netlify/next';
  
 export function middleware(req: NextRequest) {
 
-  console.log('req', req);
+  // console.log('pathname',  req.nextUrl);
 
   const { pathname } = req.nextUrl;
   if (pathname.startsWith("/api/hello")) {
+
+    console.log('insssksks');
     // Add a header to the rewritten request
 
     const request = new MiddlewareRequest(req);
